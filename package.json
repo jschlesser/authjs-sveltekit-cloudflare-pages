@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "description": "An example project for Auth.js with SvelteKit",
+  "repository": "https://github.com/nextauthjs/sveltekit-auth-example",
+  "bugs": {
+    "url": "https://github.com/nextauthjs/next-auth/issues"
+  },
+  "homepage": "https://sveltekit-auth-example.vercel.app",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "wrangle": "wrangler pages dev .svelte-kit/cloudflare  --local --persist --d1=DB"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^2.0.1",
+    "@sveltejs/kit": "next",
+    "svelte": "3.55.0",
+    "svelte-check": "2.10.2",
+    "typescript": "4.9.4",
+    "vite": "4.0.1"
+  },
+  "type": "module",
+  "dependencies": {
+    "@auth/core": "^0.4.0",
+    "@auth/sveltekit": "^0.2.1",
+    "@next-auth/cloudflare-d1-adapter": "^0.1.0"
+  }
+}

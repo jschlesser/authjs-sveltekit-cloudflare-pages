@@ -1,0 +1,7 @@
+# These vars are from your GitHub OAuth App
+# https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app
+GITHUB_ID=
+GITHUB_SECRET=
+# On UNIX systems you can use `openssl rand -hex 32` or 
+# https://generate-secret.vercel.app/32 to generate a secret.
+AUTH_SECRET=

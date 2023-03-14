@@ -1,4 +1,4 @@
 [[ d1_databases ]]
-binding = "DB2" # i.e. available in your Worker on env.DB
-database_name = "TestDB2"
-database_id = "123"
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "something"
+database_id = "12345"

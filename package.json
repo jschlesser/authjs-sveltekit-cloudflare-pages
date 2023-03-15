@@ -1,11 +1,11 @@
 {
   "private": true,
-  "description": "An example project for Auth.js with SvelteKit",
-  "repository": "https://github.com/nextauthjs/sveltekit-auth-example",
+  "description": "An example project for Auth.js on Cloudflare D1 and Pages with SvelteKit",
+  "repository": "https://github.com/jschlesser/authjs-sveltkit-cloudflare-pages",
   "bugs": {
-    "url": "https://github.com/nextauthjs/next-auth/issues"
+    "url": "https://github.com/jschlesser/authjs-sveltkit-cloudflare-pages/issues"
   },
-  "homepage": "https://sveltekit-auth-example.vercel.app",
+  "homepage": "https://github.com/jschlesser/authjs-sveltkit-cloudflare-pages",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -13,7 +13,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "wrangle": "wrangler pages dev .svelte-kit/cloudflare  --local --persist --d1=DB",
-    "deploy": "npm run build; npx wrangler pages publish .svelte-kit/cloudflare"
+    "deploy": "npm run build; npx wrangler pages publish .svelte-kit/cloudflare",
+    "tail": "npx wrangler pages deployment tail"
   },
   "devDependencies": {
     "@sveltejs/adapter-cloudflare": "^2.0.1",

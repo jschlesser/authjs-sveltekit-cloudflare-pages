@@ -30,7 +30,7 @@ You can get going quickly without knowing the subjects below but next steps and 
   - [instructions](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
   - Use whatever name you like
   - Homepage Url `http://127.0.0.1:8788`
-  - Authorization Callback URL: `http://127.0.0.1:8788/auth/callback/gihub`
+  - Authorization Callback URL: `http://127.0.0.1:8788/auth/callback/github`
   - Click Register
   - Generate a secret and keep it and the client id somewhere temporarily, you will need it in next steps
   - Click Update Application (just in case)

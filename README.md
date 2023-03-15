@@ -40,14 +40,14 @@ You can get going quickly without knowing the subjects below but next steps and 
   - Follow the instructions in the file to generate an AUTH_SECRET
 - Test locally
   - `npm install`
-  - `npm build`
-  - `npm wrangle`
+  - `npm run build`
+  - `npm run wrangle`
   - In a separate terminal session run `npx vite build -w` to have vite auto build when it sees source changes
-  - Open a browser to http://127.0.0.1:8788 or whatever port shows up in the terminal output from `npm wrangle`
+  - Open a browser to http://127.0.0.1:8788 or whatever port shows up in the terminal output from `npm run wrangle`
 
 ### Local development notes
 
-- Full hot module reloading (HMR) isn't supported with wrangler and SvelteKit/Vite. Unfortunately SvelteKit/Vite and wrangler dont play nice together from an HMR perspective. Wrangler needs bundled code to run and you need wrangler to get access to the D1 database. Vite compiles/bundles that code with the `@sveltejs/adapter-cloudflare` module, which is set up in `svelte.config.js`. It outputs that code into the `.svelte-kit/cloudflare` directory. When you change the app source code you need to rerun the `npm build` step before seeing your changes. You can try running `npm run dev` which attempts to do both the wrangler and continuous build with file watching steps in a single terminal session, and kills them both with Ctrl-C. It throws an error in the terminal for every change but it seems to work despite that error. It's probably safer to have it in two different terminal sessions though. A clean solution with no errors would be a nice quality of life improvement.
+- Full hot module reloading (HMR) isn't supported with wrangler and SvelteKit/Vite. Unfortunately SvelteKit/Vite and wrangler dont play nice together from an HMR perspective. Wrangler needs bundled code to run and you need wrangler to get access to the D1 database. Vite compiles/bundles that code with the `@sveltejs/adapter-cloudflare` module, which is set up in `svelte.config.js`. It outputs that code into the `.svelte-kit/cloudflare` directory. When you change the app source code you need to rerun the `npm run build` step before seeing your changes. You can try running `npm run dev` which attempts to do both the wrangler and continuous build with file watching steps in a single terminal session, and kills them both with Ctrl-C. It throws an error in the terminal for every change but it seems to work despite that error. It's probably safer to have it in two different terminal sessions though. A clean solution with no errors would be a nice quality of life improvement.
 - If you are developing in vscode with linting and everything turned no you will see some 'red files' that look like errors. I havent figured out how to resolve some of those reported type errors yet but the code compiles and runs. Help here would be great too.
 
 ## Configuration Steps for Production Deployment

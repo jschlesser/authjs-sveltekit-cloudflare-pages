@@ -2,14 +2,16 @@
 
 ## Warning
 
-This project depends on alpha database software, an patch to an open source package that has been accepted and merged to main but not yet published to NPM and a database adapter that has yet to be accepted to the next-auth repository. In short, it's a work in progress, but somewhat usable so I can gather feedback.
+This project depends on alpha database software.
+It relies on a database adapter that has yet to be accepted to the next-auth repository. I't uses a temporary package published under my own scope @jschlesser/d1-adapter. Hopefully it goes away and becomes @auth/d1-adapter in the near future.
+In short, it's a work in progress, but somewhat usable so I can gather feedback.
 
 ## Overview
 
-This is adapted from the official SvelteKit Auth example for [Auth.js](https://sveltekit.authjs.dev) for Cloudflare Pages. It uses a D1 sqlite database which is in open alpha. The D1 database API is subject to change,
+This is adapted from the official SvelteKit Auth example for [Auth.js](https://sveltekit.authjs.dev) for Cloudflare Pages. It uses a D1 sqlite database which is in open alpha @ Cloudflare. The D1 database API is subject to change,
 You probably don't want to build anything mission critical on it today. However, it's plenty stable enough for hobbys and toys and little tools.
 
-You can get going quickly without knowing the subjects below but next steps and customization will require an investment in learning.
+You can get going quickly without knowing the subjects below but next steps and customization will require some learning.
 
 - TypeScript
 - SvelteKit (and the limitations & tricks of developing with wrangler & pages)
@@ -18,13 +20,14 @@ You can get going quickly without knowing the subjects below but next steps and 
 
 ## 3 Things you will need to set up and consider before you get started.
 
-1. A free (for now) Cloudflare account. D1 databases are [free](https://developers.cloudflare.com/d1/platform/pricing/) while its in open alpha. I bet they charge for it like [Durable Objects](https://developers.cloudflare.com/workers/platform/pricing/#durable-objects) when it goes v1. But, I'm not a Clouflare employee or insider, I'm barely an outsider. They make you have a [minimum](https://www.cloudflare.com/plans/developer-platform/) $5 monthly base non free plan for some features like Durable objects, I suppose to limit abuse. However, it covers as many projects as you would like.
+1. A free (for now) Cloudflare account. D1 databases are [free](https://developers.cloudflare.com/d1/platform/pricing/) while it's in open alpha. I bet they charge for it like [Durable Objects](https://developers.cloudflare.com/workers/platform/pricing/#durable-objects) when it goes v1. But, I'm not a Clouflare employee or insider, I'm barely an outsider. They make you have a [minimum](https://www.cloudflare.com/plans/developer-platform/) $5 monthly base non free plan for some features like Durable objects, I suppose to limit abuse. However, it covers as many projects as you would like.
 2. A free GitHub account so you can create an OAuth App that provides the github authentication for this app.
-3. Cloudflare Wrangler installed on your local machine.
 
 ## Configuration Steps for Local Development
 
-- GitHub OAuth App for local development [instructions](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
+- Clone or Fork and Clone this project to your local machine.
+- Create a GitHub OAuth App for local development
+  - [instructions](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
   - Use whatever name you like
   - Homepage Url `http://127.0.0.1:8788`
   - Authorization Callback URL: `http://127.0.0.1:8788/auth/callback/gihub`
@@ -32,11 +35,9 @@ You can get going quickly without knowing the subjects below but next steps and 
   - Generate a secret and keep it and the client id somewhere temporarily, you will need it in next steps
   - Click Update Application (just in case)
 - .dev.vars.example -> .dev.vars
-
   - `cp .dev.vars.example .dev.vars`
   - fill in the id and secret from the last step in your .dev.vars file. This file is in .gitignore
   - Follow the instructions in the file to generate an AUTH_SECRET
-
 - Test locally
   - `npm install`
   - `npm build`
@@ -46,7 +47,7 @@ You can get going quickly without knowing the subjects below but next steps and 
 
 ### Local development notes
 
-- Full hot module reloading (HMR) isn't supported with wrangler and vite. Unfortunately sveltekit/vite and wrangler dont play nice together from an HMR perspective. Wrangler needs bundled code to run and you need wrangler to get access to the D1 database. vite compiles that code with the `@sveltejs/adapter-cloudflare` module, which is set up in `svelte.config.js`. It outputs that code into svelte-kit/cloudflare. When you change the app source code you need to rerun the `npm build` step before seeing your changes. You can try running `npm run dev` which attempts to do both the wrangler and continuous build with file watching steps in a single terminal session, and kills them both with Ctrl-C. It throws an error in the terminal for every change but it seems to work despite that error. It's probably safer to have it in two different terminal sessions though. A clean solution with no errors would be a nice quality of life improvement.
+- Full hot module reloading (HMR) isn't supported with wrangler and SvelteKit/Vite. Unfortunately SvelteKit/Vite and wrangler dont play nice together from an HMR perspective. Wrangler needs bundled code to run and you need wrangler to get access to the D1 database. Vite compiles/bundles that code with the `@sveltejs/adapter-cloudflare` module, which is set up in `svelte.config.js`. It outputs that code into the `.svelte-kit/cloudflare` directory. When you change the app source code you need to rerun the `npm build` step before seeing your changes. You can try running `npm run dev` which attempts to do both the wrangler and continuous build with file watching steps in a single terminal session, and kills them both with Ctrl-C. It throws an error in the terminal for every change but it seems to work despite that error. It's probably safer to have it in two different terminal sessions though. A clean solution with no errors would be a nice quality of life improvement.
 - If you are developing in vscode with linting and everything turned no you will see some 'red files' that look like errors. I havent figured out how to resolve some of those reported type errors yet but the code compiles and runs. Help here would be great too.
 
 ## Configuration Steps for Production Deployment

@@ -41,12 +41,13 @@ You can get going quickly without knowing the subjects below but next steps and 
   - `npm install`
   - `npm build`
   - `npm wrangle`
+  - In a separate terminal session run `npx vite build -w` to have vite auto build when it sees source changes
   - Open a browser to http://127.0.0.1:8788 or whatever port shows up in the terminal output from `npm wrangle`
 
 ### Local development notes
 
-- Hot reloading isn't supported yet. Unfortunately sveltekit and wrangler dont play nice together from an HMR perspective. Wrangler needs bundled code to run and you need wrangler to get access to the D1 database. When you change the app source code you need to rerun the `npm build` step before running. Vite is doing the building and it has a 'watch' mode for auto rebuilding but I havent had luck with both wrangler running and vite build in watch mode in two different processes. You can just keep wrangler running in one process and rerun build and that seems to work fine. It would be great if someone could figure out how to have both running at the same time.
-- If you are developing in vscode with linting and everything turned no you will see some 'red files' that look like errors. I havent figured out how to resolve some of those reported type errors yet but the code compiles and runs. Help here would be great.
+- Full hot module reloading (HMR) isn't supported with wrangler and vite. Unfortunately sveltekit/vite and wrangler dont play nice together from an HMR perspective. Wrangler needs bundled code to run and you need wrangler to get access to the D1 database. vite compiles that code with the `@sveltejs/adapter-cloudflare` module, which is set up in `svelte.config.js`. It outputs that code into svelte-kit/cloudflare. When you change the app source code you need to rerun the `npm build` step before seeing your changes. You can try running `npm run dev` which attempts to do both the wrangler and continuous build with file watching steps in a single terminal session, and kills them both with Ctrl-C. It throws an error in the terminal for every change but it seems to work despite that error. It's probably safer to have it in two different terminal sessions though. A clean solution with no errors would be a nice quality of life improvement.
+- If you are developing in vscode with linting and everything turned no you will see some 'red files' that look like errors. I havent figured out how to resolve some of those reported type errors yet but the code compiles and runs. Help here would be great too.
 
 ## Configuration Steps for Production Deployment
 

@@ -7,7 +7,7 @@
   },
   "homepage": "https://github.com/jschlesser/authjs-sveltkit-cloudflare-pages",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "(trap 'kill 0' SIGINT; wrangler pages dev .svelte-kit/cloudflare  --local --persist --d1=DB & vite build -w)",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
